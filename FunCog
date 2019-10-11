@@ -1,0 +1,152 @@
+import discord
+from discord.ext import commands
+import asyncio
+import datetime
+import random
+
+class FunCog(commands.Cog, name='FunCommands'):
+
+    def __init__(self, bot):
+        self.bot = bot
+#==================================================================================
+    @commands.command()
+    async def eightball(self, ctx, *, question):
+        responses = ['Perhaps.',
+                    'Cant tell you yes.',
+                    'Sorry, but its a no.',
+                    'Oh yes, of course!',
+                    'Nope, not at all.',
+                    'Ask again later.',
+                    'Try asking again.',
+                    'Very slim.',
+                    'Yes.',
+                    'Maybe.',
+                    'Hate to break it to you, but sorry its a no.',
+                    'Luck is on your side! ITS A YES!!!!',
+                    'Sorry nope.']
+
+        embed = discord.Embed(
+
+        title = (f'Question: {question}\nAnswer: {random.choice(responses)}'),
+        colour = discord.Colour.purple()
+        )
+
+        await ctx.send(embed=embed)
+
+    @eightball.error
+    async def eightball_error(ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+                embed = discord.Embed(
+            title = 'ERROR! MissingRequiredArgument.',
+            description = 'Please enter a question when running this command.',
+            colour = discord.Colour.red()
+            )
+        await ctx.send(embed=embed)
+#==================================================================================
+    @commands.command()
+    async def hug(self, ctx, member: discord.Member):
+        responses = ['https://cdn.discordapp.com/attachments/614238805456715816/614238995391709184/image0.gif',
+                     'https://cdn.discordapp.com/attachments/614238805456715816/614239564093063169/image0.gif',
+                     'https://cdn.discordapp.com/attachments/614238805456715816/614239334232752129/image0.gif',
+                     'https://cdn.discordapp.com/emojis/444694749551525909.gif?v=1',
+                     'https://cdn.discordapp.com/attachments/595406501460443148/614273621141225472/source.gif',
+                     'https://cdn.discordapp.com/attachments/595406501460443148/614273637716983838/BlindOblongAmurratsnake-small.gif',]
+
+        embed = discord.Embed(
+
+        title = (f'{ctx.author} hugs {member}'),
+        colour = discord.Colour.purple()
+        )
+        embed.set_image(url=f'{random.choice(responses)}')
+        embed.set_footer(text=f'{ctx.author} is such a kind person.')
+
+        await ctx.send(embed=embed)
+
+    @hug.error
+    async def hug_error(ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+                embed = discord.Embed(
+            title = 'ERROR! MissingRequiredArgument.',
+            description = 'Please specify a user with an @ mention.',
+            colour = discord.Colour.red()
+            )
+        await ctx.send(embed=embed)
+#==================================================================================
+    @commands.command()
+    async def pat(self, ctx, member: discord.Member):
+        responses = ['https://cdn.discordapp.com/attachments/588970053379031051/614609020073934848/patpet.gif',
+                     'https://cdn.discordapp.com/attachments/588970053379031051/614609033315352606/r3r3f3rqff.gif',
+                     'https://cdn.discordapp.com/attachments/588970053379031051/614609039673786378/rge3rgerb456.gif',
+                     'https://cdn.discordapp.com/attachments/588970053379031051/614609041280335873/8b426c9bedc37054cd7e73925fa10da5.gif',
+                     'https://cdn.discordapp.com/attachments/588970053379031051/614609045185363968/LUypjw3.gif',]
+
+        embed = discord.Embed(
+
+        title = (f'{ctx.author} pats {member}'),
+        colour = discord.Colour.green()
+        )
+        embed.set_image(url=f'{random.choice(responses)}')
+        embed.set_footer(text=f'aww how adorable of {ctx.author} to pat {member}')
+
+        await ctx.send(embed=embed)
+
+    @pat.error
+    async def pat_error(ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+                embed = discord.Embed(
+            title = 'ERROR! MissingRequiredArgument.',
+            description = 'Please specify a user with an @ mention.',
+            colour = discord.Colour.red()
+            )
+        await ctx.send(embed=embed)
+#==================================================================================
+    @commands.command()
+    async def kiss(self, ctx, member: discord.Member):
+        responses = ['https://cdn.discordapp.com/attachments/604855945557704709/627976070657998858/here_dex.gif',
+                     'https://cdn.discordapp.com/attachments/627910872509054988/627976675447144478/tumblr_my0m0jyMOJ1t8uh6no1_500.gif',
+                     'https://cdn.discordapp.com/attachments/627910872509054988/627976678286688276/PKOsDVW.gif',
+                     'https://cdn.discordapp.com/attachments/627910872509054988/627976682971594772/katanagatari-kiss.gif',
+                     'https://cdn.discordapp.com/attachments/627910872509054988/627976688424452146/giphy.gif',
+                     'https://cdn.discordapp.com/attachments/627910872509054988/627976894511317021/source.gif',]
+
+        embed = discord.Embed(
+
+        title = (f'{ctx.author} kisses {member}'),
+        colour = discord.Colour.green()
+        )
+        embed.set_image(url=f'{random.choice(responses)}')
+        embed.set_footer(text=f'Such an amazing romantic moment between the two.')
+
+        await ctx.send(embed=embed)
+
+        @kiss.error
+        async def kiss_error(ctx, error):
+            if isinstance(error, commands.MissingRequiredArgument):
+                    embed = discord.Embed(
+                title = 'ERROR! MissingRequiredArgument.',
+                description = 'Please specify a user with an @ mention.',
+                colour = discord.Colour.red()
+                )
+            await ctx.send(embed=embed)
+#==================================================================================
+    @commands.command()
+    async def cflip(self, ctx):
+        responses = ['Heads.',
+                    'Tails.']
+        await ctx.send(f'{random.choice(responses)}')
+#==================================================================================
+    @commands.command()
+    async def hello(self, ctx):
+        responses = ['Hello there',
+                    'Heyyyyy',
+                    'Hi there',
+                    'Whats up',
+                    'Hewwo uwu',
+                    'haiiiii']
+
+        await ctx.send(f'{random.choice(responses)}')
+#==================================================================================
+
+def setup(bot):
+    bot.add_cog(FunCog(bot))
+    print('The cog "FunCommands.py" is fully loaded')
