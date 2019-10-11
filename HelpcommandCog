@@ -1,0 +1,48 @@
+import discord
+from discord.ext import commands
+import asyncio
+import datetime
+
+class HelpCog(commands.Cog, name='helpcommand'):
+
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.command()
+    async def help(self, ctx):
+        await ctx.send('Sent! Check your DMs! :thumbsup:')
+        embed = discord.Embed(
+        title = 'InfiniteBot, the Discord bot for you!',
+        description = 'Welcome to the help page of InfiniteBot, down below are a list of every command that has been implemented. More commands are to be added in the future!',
+        colour = discord.Colour.blue()
+        )
+        
+        embed.add_field(name='=userinfo', value='Shows information of a user you mention.', inline=False)
+        embed.add_field(name='=avatar', value='Shows the profile picture of a user you mention.', inline=False)
+        embed.add_field(name='=ping', value='Shows the bot latency in "MS".', inline=False)
+        embed.add_field(name='=level', value='Shows your level and XP. Also shows users levels and XP when mentioned.', inline=False)
+        embed.add_field(name='=hug', value='Mention a user to *hug* them!', inline=False)
+        embed.add_field(name='=pat', value='Mention a user to *pat* them!', inline=False)
+        embed.add_field(name='=kiss', value='Mention a user to *kiss* them!', inline=False)
+        embed.add_field(name='=anime', value='Sends 1 anime image out of 100+ images.', inline=False)
+        embed.add_field(name='=eightball', value='Ask it a question, get an answer!', inline=False)
+        embed.add_field(name='=cflip', value='Randomly selects heads or tails!', inline=False)
+        embed.add_field(name='=hello', value='Command doesnt do much, just greets you back.', inline=False)
+
+        await ctx.author.send(embed=embed)
+
+        embed = discord.Embed(
+        title = 'Support Links, Servers, And More!',
+        colour = discord.Colour.orange()
+        )
+
+        embed.add_field(name='Primary Support Server', value='Join Infinity! https://discord.gg/6DQcAdC',inline=False)
+        embed.add_field(name='Bot Invite Link', value='https://discordapp.com/oauth2/authorize?&client_id=627595672522326048&scope=bot&permissions=2147483127',inline=False)
+        embed.add_field(name='YouTube Page', value='Not avaliable.',inline=False)
+        embed.add_field(name='GitHub Page', value='Not avaliable.',inline=False)
+
+        await ctx.author.send(embed=embed)
+
+def setup(bot):
+    bot.add_cog(HelpCog(bot))
+    print('The cog "helpcommand.py" is fully loaded')
