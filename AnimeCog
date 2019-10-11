@@ -1,0 +1,136 @@
+import discord
+from discord.ext import commands
+import random
+import datetime
+
+
+class AnimeCog(commands.Cog, name='AnimeCommand'):
+
+    def __init__(self, bot):
+        self.bot = bot
+
+
+    @commands.command()
+    async def anime(self, ctx):
+        
+        responses = ['https://cdn.discordapp.com/attachments/619750180735942666/628729413957189642/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628728853635923996/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628728825400000533/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628728784392028221/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628728697330860052/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628728647284686859/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628728621950959617/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628728567592779806/image0.png',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628728435526729729/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628728387103621137/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628728342136356894/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628728287585107979/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727954364563458/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727885489897473/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727832855445515/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727758612070400/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727639925850125/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727559923695618/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727516743335987/image6.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727516743335986/image4.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727516282093578/image5.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727509768470528/image3.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727508937736234/image1.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727508937736232/image2.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727508073840670/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727507558072333/image4.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727506886721537/image7.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727506236735497/image5.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727506236735493/image9.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727445205549067/image8.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727445205549066/image3.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727444693581864/image1.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727444064567298/image2.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727444064567296/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727442755813388/image7.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727418558873602/image8.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727417934053387/image1.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727417363759105/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727417363759104/image6.jpg',
+                     'https://cdn.discordapp.com/attachments/619750180735942666/628727416558190604/image7.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619344342359998465/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619344342838018048/image2.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619344507787542538/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619344474811793418/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619344651996102666/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619344756203323392/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619344924114157569/image1.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619344973170737162/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619345004644794378/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619345106306334730/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619345216318603275/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619346758253936671/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619346940169158657/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619346961228890132/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619347410346311693/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619348818948915202/image4.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619348819561152513/image2.png',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619348819561152515/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619348820001816606/image1.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619348820001816607/image3.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619348912393945099/image1.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619348912393945103/image2.png',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619348913085874176/image3.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619348913085874177/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619349841394270208/image5.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619349841394270209/image4.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619349841885265920/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619349841885265922/image2.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619349842392645662/image1.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619349842392645663/image3.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619350340227301376/image1.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619350340751458305/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619350324041351178/image5.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619350324531953688/image4.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619350324976812061/image6.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619350324976812062/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619350325475803187/image2.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619350325479997441/image1.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619350326125789184/image3.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619351878177652767/image5.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619351878177652768/image4.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619351878895140864/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619351878895140866/image2.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619351879327023149/image1.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619351879327023151/image3.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619352008935211008/image5.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619352008935211009/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619352009530671115/image4.png',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619352010139107328/image2.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619352010139107331/image1.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619352010659069963/image3.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619352092481421312/image5.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619352092481421313/image2.png',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619352093194715136/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619352093194715138/image3.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619352093848895488/image4.png',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619352116216987668/image1.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619352116216987669/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/619353555865698362/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/627149885698998282/image0.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/627149885698998284/image2.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/627149886177017902/image1.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/627149886177017906/image3.jpg',
+                     'https://cdn.discordapp.com/attachments/619341440803143690/627149886873141257/image8.jpg',                    
+                     ]
+        
+        embed = discord.Embed(
+        title = 'Anime',
+        description = 'Randomly generated HD anime images.',
+        colour = discord.Colour.blue() 
+        )
+   
+        embed.set_image(url=f'{random.choice(responses)}')
+
+        await ctx.send(embed=embed)
+
+
+def setup(bot):
+    bot.add_cog(AnimeCog(bot))
+    print('The cog "Anime.py" is fully loaded')
+
