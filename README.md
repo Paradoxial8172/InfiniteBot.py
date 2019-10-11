@@ -1,4 +1,3 @@
 # InfiniteBot.py
 Discord bot, InfiniteBot.py made in Python REWRITE Edition
-
-Used with Discord's very own Python API.
+InfiniteBot's very own support server: https://discord.gg/A7jEhs9
